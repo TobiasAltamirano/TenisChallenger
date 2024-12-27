@@ -13,12 +13,6 @@ export class Jugador {
   apellido: string;
 
   @Column()
-  edad: number;
-
-  @Column()
-  nacionalidad: string;
-
-  @Column()
   ranking: number;
 
   @Column({ default: 0 })
@@ -40,8 +34,6 @@ export class Jugador {
     this.id = 0;
     this.nombre = '';
     this.apellido = '';
-    this.edad = 0;
-    this.nacionalidad = '';
     this.ranking = 0;
     this.partidosJugados = 0;
     this.partidosGanados = 0;
