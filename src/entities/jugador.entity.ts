@@ -30,15 +30,5 @@ export class Jugador {
   @OneToMany(() => Partido, (partido) => partido.jugador2)
   partidosVisitante: Partido[];
 
-  constructor() {
-    this.id = 0;
-    this.nombre = '';
-    this.apellido = '';
-    this.ranking = 0;
-    this.partidosJugados = 0;
-    this.partidosGanados = 0;
-    this.partidosPerdidos = 0;
-    this.partidosLocal = [];
-    this.partidosVisitante = [];
-  }
+
 }
