@@ -1,32 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, IsNull } from 'typeorm';
 import { Ronda } from './ronda.entity';
-
+import { IsNumber, IsDate, IsString } from 'class-validator';
 @Entity()
 export class Torneo {
   @PrimaryGeneratedColumn()
+  @IsNumber()
   id: number;
 
   @Column()
+  @IsString()
   nombre: string;
 
   @Column()
+  @IsDate()
   fechaInicio: Date;
 
   @Column()
   fechaFin: Date;
 
-  @Column()
-  estado: string; // "en progreso", "finalizado", "futuro"
+  @Column({
+    type: "enum",
+    enum: ["en progreso", "finalizado", "futuro"],
+    default: "futuro"
+  })
+  estado: string; 
 
   @OneToMany(() => Ronda, (ronda) => ronda.torneo)
   rondas: Ronda[];
 
-  constructor() {
-    this.id = 0;
-    this.nombre = '';
-    this.fechaInicio = new Date();
-    this.fechaFin = new Date();
-    this.estado = '';
-    this.rondas = [];
-  }
+
 }
