@@ -8,7 +8,7 @@ export class Ronda {
   id: number;
 
   @Column()
-  nombre: string; // "cuartos", "semis", etc.
+  nombre: string; // "octavos", "cuartos", etc.
 
   @ManyToOne(() => Torneo, (torneo) => torneo.rondas)
   torneo: Torneo | null;
@@ -16,10 +16,4 @@ export class Ronda {
   @OneToMany(() => Partido, (partido) => partido.ronda)
   partidos: Partido[];
 
-  constructor() {
-    this.id = 0;
-    this.nombre = '';
-    this.torneo = null;
-    this.partidos = [];
-  }
 }

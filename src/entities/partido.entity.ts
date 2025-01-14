@@ -28,14 +28,4 @@ export class Partido {
   @ManyToOne(() => Ronda, (ronda) => ronda.partidos)
   ronda: Ronda | null;
 
-  constructor() {
-    this.id = 0;
-    this.fecha = new Date();
-    this.jugador1 = null;
-    this.jugador2 = null;
-    this.puntajeJugador1 = 0;
-    this.puntajeJugador2 = 0;
-    this.ganador = null;
-    this.ronda = null;
-  }
 }
