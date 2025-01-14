@@ -1,0 +1,16 @@
+import { IsNotEmpty, IsString, IsInt, Min, Max } from 'class-validator';
+
+export class JugadorDto {
+  @IsString()
+  @IsNotEmpty()
+  nombre: string;
+
+  @IsString()
+  @IsNotEmpty()
+  apellido: string;
+
+  @IsInt()
+  @Min(1)
+  @Max(100)
+  ranking: number;
+}

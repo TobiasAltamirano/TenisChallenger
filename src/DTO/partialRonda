@@ -1,0 +1,11 @@
+import { IsOptional, IsString, IsInt } from 'class-validator';
+
+export class PartialRondaDto {
+  @IsString()
+  @IsOptional()
+  nombre?: string;
+
+  @IsInt()
+  @IsOptional()
+  torneoId?: number;
+}

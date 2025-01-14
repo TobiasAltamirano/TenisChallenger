@@ -1,0 +1,32 @@
+import { IsOptional, IsString, IsInt, Min, Max } from 'class-validator';
+
+export class PartialJugadorDto {
+  @IsString()
+  @IsOptional()
+  nombre?: string;
+
+  @IsString()
+  @IsOptional()
+  apellido?: string;
+
+  @IsInt()
+  @Min(1)
+  @Max(1000)
+  @IsOptional()
+  ranking?: number;
+
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  partidosJugados?: number;
+
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  partidosGanados?: number;
+
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  partidosPerdidos?: number;
+}

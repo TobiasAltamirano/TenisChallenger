@@ -1,0 +1,11 @@
+import { IsNotEmpty, IsString, IsInt } from 'class-validator';
+
+export class RondaDto {
+  @IsString()
+  @IsNotEmpty()
+  nombre: string;
+
+  @IsInt()
+  @IsNotEmpty()
+  torneoId: number;
+}

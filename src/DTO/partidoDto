@@ -1,0 +1,31 @@
+import { IsNotEmpty, IsDateString, IsInt, Min, IsOptional } from 'class-validator';
+
+export class PartidoDto {
+  @IsDateString()
+  @IsNotEmpty()
+  fecha: string;
+
+  @IsInt()
+  @IsNotEmpty()
+  jugador1Id: number;
+
+  @IsInt()
+  @IsNotEmpty()
+  jugador2Id: number;
+
+  @IsInt()
+  @Min(0)
+  puntajeJugador1: number;
+
+  @IsInt()
+  @Min(0)
+  puntajeJugador2: number;
+
+  @IsInt()
+  @IsOptional()
+  ganadorId?: number;
+
+  @IsInt()
+  @IsNotEmpty()
+  rondaId: number;
+}

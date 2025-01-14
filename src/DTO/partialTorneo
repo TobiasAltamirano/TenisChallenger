@@ -1,0 +1,19 @@
+import { IsOptional, IsString, IsDateString } from 'class-validator';
+
+export class PartialTorneoDto {
+  @IsString()
+  @IsOptional()
+  nombre?: string;
+
+  @IsDateString()
+  @IsOptional()
+  fechaInicio?: string;
+
+  @IsDateString()
+  @IsOptional()
+  fechaFin?: string;
+
+  @IsString()
+  @IsOptional()
+  estado?: string; // "en progreso", "finalizado", "futuro"
+}

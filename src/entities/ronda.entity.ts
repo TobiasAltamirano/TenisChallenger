@@ -8,7 +8,7 @@ export class Ronda {
   id: number;
 
   @Column()
-  nombre: string; // "octavos", "cuartos", etc.
+  nombre: string; // "cuartos", "semis", etc.
 
   @ManyToOne(() => Torneo, (torneo) => torneo.rondas)
   torneo: Torneo | null;

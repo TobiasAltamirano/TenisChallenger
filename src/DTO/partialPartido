@@ -1,0 +1,33 @@
+import { IsOptional, IsDateString, IsInt, Min, Max } from 'class-validator';
+
+export class PartialPartidoDto {
+  @IsDateString()
+  @IsOptional()
+  fecha?: string;
+
+  @IsInt()
+  @IsOptional()
+  jugador1Id?: number;
+
+  @IsInt()
+  @IsOptional()
+  jugador2Id?: number;
+
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  puntajeJugador1?: number;
+
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  puntajeJugador2?: number;
+
+  @IsInt()
+  @IsOptional()
+  ganadorId?: number;
+
+  @IsInt()
+  @IsOptional()
+  rondaId?: number;
+}

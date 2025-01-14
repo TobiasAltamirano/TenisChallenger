@@ -1,0 +1,19 @@
+import { IsNotEmpty, IsString, IsDateString } from 'class-validator';
+
+export class TorneoDto {
+  @IsString()
+  @IsNotEmpty()
+  nombre: string;
+
+  @IsDateString()
+  @IsNotEmpty()
+  fechaInicio: string;
+
+  @IsDateString()
+  @IsNotEmpty()
+  fechaFin: string;
+
+  @IsString()
+  @IsNotEmpty()
+  estado: string; // "en progreso", "finalizado", "futuro"
+}
