@@ -2,19 +2,32 @@ import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 
-export class CreateJugadorDto {
+export class JugadorDto {
     @ApiProperty()
     @IsString()
     nombre: string;
+
+    @ApiProperty({ default: 'https://www.gravatar.com/avatar/'})
+    @IsString()
+    avatar: string;
 
     @ApiProperty()
     @IsString()
     apellido: string;
 
-    @ApiProperty()
+    @ApiProperty({ default: 0 })
     @IsNumber()
     @Min(0)
     ranking: number;
+
+    @ApiProperty()
+    @IsString()
+    descripcion: string;
+
+    @ApiProperty()
+    @IsNumber()
+    @Min(0)
+    puntos: number;
 
     @ApiProperty({ default: 0 })
     @IsNumber()
@@ -32,4 +45,4 @@ export class CreateJugadorDto {
     partidosPerdidos?: number;
 }
 
-export class UpdateJugadorDto extends PartialType(CreateJugadorDto) {}
+export class UpdateJugadorDto extends PartialType(JugadorDto) {}

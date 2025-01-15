@@ -13,7 +13,13 @@ export class Jugador {
   apellido: string;
 
   @Column()
-  ranking: number;
+  avatar: string;
+
+  @Column()
+  ranking?: number;
+
+  @Column()
+  puntos: number;
 
   @Column({ default: 0 })
   partidosJugados: number;
@@ -25,10 +31,10 @@ export class Jugador {
   partidosPerdidos: number;
 
   @OneToMany(() => Partido, (partido) => partido.jugador1)
-  partidosLocal: Partido[];
+  partidosLocal?: Partido[];
 
   @OneToMany(() => Partido, (partido) => partido.jugador2)
-  partidosVisitante: Partido[];
+  partidosVisitante?: Partido[];
 
 
 }
