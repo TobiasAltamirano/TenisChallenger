@@ -1,25 +1,19 @@
 import { Module } from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
-import  ormConfig  from './orm.config';
+import ormConfig from './orm.config';
 
-
-@Module( 
-    {
-    imports:
-        [
-            TypeOrmModule.forRoot(ormConfig)
-
-        ]
-    }
-)
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(ormConfig),
+  ],
+})
 export class DatabaseModule {
-    constructor() {
-        console.log("DatabaseModule constructor");
-        
-
-        
-    }
-
-    
+  constructor() {
+    console.log("DatabaseModule constructor");
+  }
 }
