@@ -20,7 +20,11 @@ export class JugadorService {
   }
 
   async findAllOrderedByRanking() {
-    return await this.jugadorRepository.find({ order: { ranking: 'DESC' } });
+    let jugadores = await this.jugadorRepository.find({ order: { ranking: 'DESC' } });
+    for (let jugador of jugadores) {
+      jugador.avatar = 'http://localhost:5000/' + jugador.avatar;
+    }
+    return jugadores;
   }
 
   
@@ -29,14 +33,14 @@ export class JugadorService {
 
   async create(jugadorData: JugadorDto) {
     let jugadores = await this.findAll();
-    jugadorData.ranking = 0;
+    jugadorData.ranking = jugadores.length + 1;
 
     for (let jugador of jugadores) {
       if (jugador.nombre == jugadorData.nombre && jugador.apellido == jugadorData.apellido) {
         return "Jugador ya existente";
       }
       if(jugador.puntos <= jugadorData.puntos){
-        jugadorData.ranking += 1;
+        jugadorData.ranking -= 1;
         // de esta forma, lo maximo que puede ser el ranking es la cantidad de jugadores
       }
     }

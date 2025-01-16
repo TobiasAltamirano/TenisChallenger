@@ -6,7 +6,9 @@ import { JugadorService } from 'src/services/jugador.service';
 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Jugador])],
+  imports: [TypeOrmModule.forFeature([Jugador]),
+
+],
   controllers: [JugadorController], 
   providers: [JugadorService],
   exports: [TypeOrmModule],

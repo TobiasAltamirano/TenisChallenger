@@ -15,9 +15,11 @@ export class JugadorDto {
     @IsString()
     apellido: string;
 
-    @ApiProperty({ default: 0 })
+    @ApiProperty({
+        uniqueItems: true // esto hace que no se repitan los rankings
+    })
     @IsNumber()
-    @Min(0)
+    @Min(1)
     ranking: number;
 
     @ApiProperty()

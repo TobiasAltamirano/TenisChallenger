@@ -1,14 +1,15 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, HttpCode, HttpStatus, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, HttpCode, HttpStatus, UseInterceptors, UploadedFile, BadRequestException, HttpException, Logger } from '@nestjs/common';
 import { JugadorService } from '../services/jugador.service';
 import { JugadorDto, UpdateJugadorDto } from 'src/dtos/jugador.dto';
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
-import { UploadedFile } from "@nestjs/common";
 
 @Controller('jugadores')
 export class JugadorController {
   constructor(private readonly jugadorService: JugadorService) {}
+
+  private readonly logger = new Logger(JugadorController.name);
 
   @Get()
   findAll() {
@@ -32,8 +33,20 @@ export class JugadorController {
           },
       }),
   }))
-  create(@Body() jugadorData: JugadorDto) {
-    return this.jugadorService.create(jugadorData);
+  async create(@Body() jugadorData: JugadorDto, @UploadedFile() file: Express.Multer.File) {
+      try {
+          this.logger.log('File:', file); // undefined
+          if (!file) {
+              throw new BadRequestException('File is required');
+          }
+          
+          jugadorData.avatar = file.filename;
+          this.logger.log('Avatar:', jugadorData.avatar);
+          return await this.jugadorService.create(jugadorData);
+      } catch (error) {
+          this.logger.error('Error:', error.message);
+          throw new HttpException('Failed to create jugador: ' + error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
   }
 
   @Put(':id')
@@ -48,7 +61,3 @@ export class JugadorController {
     return this.jugadorService.remove(id);
   }
 }
-function diskStorage(arg0: { destination: string; filename: (req: any, file: any, callback: any) => void; }): any {
-  throw new Error('Function not implemented.');
-}
-

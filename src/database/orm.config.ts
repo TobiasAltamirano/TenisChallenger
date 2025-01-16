@@ -11,6 +11,7 @@ const ormConfig = (configService: ConfigService): DataSourceOptions => ({
     database: configService.get('DATABASE_NAME'),
     entities: ["dist/**/*.entity{.ts,.js}"],
     synchronize: true,
+    dropSchema: true,
 }
 );
 

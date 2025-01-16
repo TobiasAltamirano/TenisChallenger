@@ -5,6 +5,8 @@ import { TorneoModule } from './modules/torneo.module';
 import { RondaModule } from './modules/ronda.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -18,6 +20,9 @@ import { ConfigModule } from '@nestjs/config';
     PartidoModule,
     TorneoModule,
     RondaModule,  
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'images'),
+    }),
   ],
   
 })
